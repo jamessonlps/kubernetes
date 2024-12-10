@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-server
+  labels:
+    app: go-server
+spec:
+  selector: # selector is used to match the labels of the pods
+    matchLabels:
+      app: go-server
+  replicas: 10 # number of pods to be created
+  template: # template is used to create the pods
+    metadata:
+      labels:
+        app: go-server
+    spec:
+      containers:
+        - name: go-server
+          image: "jamessonlps1/hello-go:v3"

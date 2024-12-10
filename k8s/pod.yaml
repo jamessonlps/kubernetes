@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-server
+  labels:
+    app: go-server
+spec: # spec is short for specification
+  containers:
+    - name: go-server
+      image: "jamessonlps1/hello-go:latest"
