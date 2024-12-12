@@ -16,18 +16,17 @@ spec:
     spec:
       containers:
         - name: go-server
-          image: "jamessonlps1/hello-go:v4"
+          image: "jamessonlps1/hello-go:v5.2"
           envFrom:
             - configMapRef:
                 name: go-server-env
-          # env:
-          #   - name: NAME
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: go-server-env
-          #         key: NAME
-          #   - name: ENVIRONMENT
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: go-server-env
-          #         key: ENVIRONMENT
+          volumeMounts:
+            - mountPath: "/go/files"
+              name: config
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-data
+            items:
+              - key: names
+                path: file.txt
