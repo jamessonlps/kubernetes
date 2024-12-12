@@ -8,7 +8,7 @@ spec:
   selector: # selector is used to match the labels of the pods
     matchLabels:
       app: go-server
-  replicas: 10 # number of pods to be created
+  replicas: 1 # number of pods to be created
   template: # template is used to create the pods
     metadata:
       labels:
@@ -16,4 +16,18 @@ spec:
     spec:
       containers:
         - name: go-server
-          image: "jamessonlps1/hello-go:v3"
+          image: "jamessonlps1/hello-go:v4"
+          envFrom:
+            - configMapRef:
+                name: go-server-env
+          # env:
+          #   - name: NAME
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: go-server-env
+          #         key: NAME
+          #   - name: ENVIRONMENT
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: go-server-env
+          #         key: ENVIRONMENT
